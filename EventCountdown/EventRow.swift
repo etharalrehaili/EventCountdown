@@ -35,7 +35,7 @@ struct EventRow: View {
     
     private static let relativeFormatter: RelativeDateTimeFormatter = {
         let f = RelativeDateTimeFormatter()
-        f.unitsStyle = .full // yields strings like "15 hours ago", "in 2 days", "yesterday"
+        f.unitsStyle = .full // "15 hours ago", "in 2 days", "yesterday"
         return f
     }()
 

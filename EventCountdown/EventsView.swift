@@ -42,7 +42,7 @@ struct EventsView: View {
                 EventForm(mode: .add) { newEvent in
                     events.append(newEvent)
                     NotificationScheduler
-                        .scheduleEventReminder(for: newEvent) // schedule here
+                        .scheduleEventReminder(for: newEvent)
                     adding = false
                 }
             }

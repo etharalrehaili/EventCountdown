@@ -2,6 +2,7 @@ import SwiftUI
 import PhotosUI
 import UIKit
 
+// cases either add or edit
 enum Mode {
     case add
     case edit(Event)
@@ -11,7 +12,6 @@ struct EventForm: View {
     let mode: Mode
     var onSave: (Event) -> Void
 
-    // Local draft state (won’t affect parent unless Save is tapped)
     @State private var title: String
     @State private var date: Date
     @State private var textColor: Color
@@ -20,9 +20,9 @@ struct EventForm: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    // Keep original id when editing
     private let editingID: UUID?
 
+    // initializer
     init(mode: Mode, onSave: @escaping (Event) -> Void) {
         self.mode = mode
         self.onSave = onSave
@@ -117,7 +117,8 @@ struct EventForm: View {
                 Button {
                     let newEvent = Event(
                         id: editingID ?? UUID(),
-                        title: title.trimmingCharacters(in: .whitespacesAndNewlines),
+                        title: title
+                            .trimmingCharacters(in: .whitespacesAndNewlines),
                         date: date,
                         textColor: textColor,
                         images: images
@@ -127,7 +128,10 @@ struct EventForm: View {
                 } label: {
                     Image(systemName: "checkmark")
                 }
-                .disabled(title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                .disabled(
+                    title
+                        .trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                )
             }
         }
         
